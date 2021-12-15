@@ -1,0 +1,521 @@
+/* Start Global Rulls */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+*,*::after,*::before{
+    font-family: 'Source Sans 3', sans-serif;
+    box-sizing: border-box;
+}
+:root{
+    --main-clr:#105652;
+    --shadow-clr:#2c272e9f;
+    --seek-clr:#999;
+    --seek-bull:#f9f9f9;
+    --tx-clr:#FFF;
+    --tx-alt-cle:#252525;
+}
+.container{
+    /* width: calc(100% - 40px); */
+    /* padding: 0 20px; */
+    width: 100%;
+    margin: auto;
+}
+/* End Global Rulls */
+.container{
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+}
+.container .main-app-body{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+    padding: 0 20px;
+}
+.container .main-app-body header.heading-title{
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e0e0e0;
+    color: var(--tx-alt-cle);
+    box-shadow: 0px 3px 10px var(--shadow-clr);
+}
+.main-app-body header.heading-title >:first-child{
+    font-size: 25px;
+    padding: 5px;
+}
+.main-app-body header.heading-title h2{
+    margin: auto;
+}
+
+.side-menu{
+    background-color: #e4e4e4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 250px;
+    height: calc(100vh - 60px)
+}
+@media (max-width:768px) {
+     .side-menu{
+        width: 200px;
+    }
+    
+}
+.side-menu nav{
+
+    margin-top: 70px;
+    list-style: none;
+}
+.side-menu nav li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 15px;
+    transition: margin-left 0.3s;
+}
+.side-menu nav li:hover{
+    margin-left: 8px;
+}
+.side-menu nav li a{
+    display: inline-block;
+    text-decoration: none;
+    color: var(--tx-alt-cle);
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 10px;
+    padding: 8px;
+}
+
+
+.side-menu nav li .track-ico{
+    font-size: 18px;
+}
+.side-menu nav li .theme-ico{
+    font-size: 18px;
+
+}
+
+.side-menu .about-me{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    background-color: #c4c4c4;
+}
+
+.side-menu .about-me p{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+@media (max-width:768px) {
+    .side-menu .about-me{
+        top: -35px;
+        flex-direction: column;    
+    }
+    .side-menu .about-me p{
+    font-size: 14px;
+    }
+}
+.side-menu .about-me .my-photo{
+    width: 40px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.side-menu .about-me img{
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.side-menu .about-me .about-panel{
+    position: absolute;
+    bottom: 100%;
+    right: 20%;
+    background-color: #fff;
+    padding: 15px;
+    list-style: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+@media (max-width:768px) {
+    .side-menu .about-me .about-panel{
+        right: 1%;
+        padding: 20px;
+    }
+}
+.side-menu .about-me .about-panel::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    width: 20px;
+    height: 20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+}
+.side-menu .about-me:hover .about-panel{
+    opacity: 1;
+}
+.side-menu .about-me .about-panel  li {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.side-menu .about-me .about-panel  li a{
+    text-decoration: none;
+    color: var(--tx-alt-cle);
+    font-size: 16px;
+    font-weight: 500;
+
+
+}
+.main-app-body .tracks{
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    overflow-y: scroll;
+    top: 17%;
+}
+.main-app-body .tracks.active{
+    display: none;
+    
+}
+.main-app-body .tracks .head-trk-title ,
+.main-app-body .theme  .head-th-title{
+    position: fixed;
+    z-index: 2;
+    top: 3%;
+    left: 23%;
+}
+.main-app-body .tracks .head-trk-title h4 ,
+.main-app-body .theme  .head-th-title h4{
+    font-size: 20px;
+    padding: 15px;
+    width: fit-content;
+    border-bottom: 5px solid var(--main-clr);
+}
+@media (max-width:768px) {
+    .main-app-body .tracks .head-trk-title h4 ,
+    .main-app-body .theme  .head-th-title h4{
+        font-size: 16px;
+    }
+
+    .main-app-body .tracks .head-trk-title ,
+    .main-app-body .theme  .head-th-title{
+        top: 5%;
+        left: 36%;
+    }
+}
+.main-app-body .tracks .track-container{
+    position: relative;
+    display: grid;
+    grid-template-rows: repeat(auto-fill ,minmax(70px ,1fr));
+    grid-row-gap: 8px;
+}
+.main-app-body .tracks .track-container .track{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 0;
+    background-color: var(--main-clr);
+    color: var(--tx-clr);
+    backdrop-filter: blur(5px);
+}
+
+@media (max-width:768px) {
+    .main-app-body .tracks .track-container .track{
+        flex-direction: column;
+        justify-content: space-evenly !important;
+        width: 80%;
+    }
+    
+}
+.main-app-body .tracks .track-container .track.active{
+    background-color: #e4e4e4;
+    border-left: 8px solid var(--main-clr);
+}
+.main-app-body .tracks .track-container .track.active .song-name, 
+.main-app-body .tracks .track-container .track.active .artist {
+    color: var(--tx-alt-cle);
+} 
+.main-app-body .tracks .track-container .track.active .time{
+    color: var(--tx-clr);
+    background-color: var(--main-clr);
+}
+
+.main-app-body .tracks .track-container .cover {
+    width: 75px;
+}
+.main-app-body .tracks .track-container .cover img{
+    max-width: 100%;
+}
+.main-app-body .tracks .track-container .song-name{
+    width: fit-content;
+}
+.main-app-body .tracks .track-container .song-name p{
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+@media (max-width:768px) {
+    .main-app-body .tracks .track-container .song-name p{
+        font-size: 16px;
+        font-family: 400;
+    }
+    
+}
+.main-app-body .tracks .track-container .artist{
+    font-size: 18px;
+    font-weight: normal;
+
+}
+
+
+@media (min-width:769px) {
+    .main-app-body .tracks .track-container .cover {
+        margin-left: 60px;
+    }
+    .main-app-body .tracks .track-container .song-name {
+        margin-left: 60px;
+    }
+    .main-app-body .tracks .track-container .artist {
+        margin-left: 60px;
+    }
+    
+}
+
+
+.main-app-body .tracks .track-container .time{
+    background-color: #e4e4e4;
+    padding: 15px;
+    color: var(--tx-alt-cle);
+}
+
+.main-app-body .theme{
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    overflow-y: scroll;
+    top: 17%;
+    display: none;
+}
+.main-app-body .theme.active{
+    display: flex;
+    flex-direction:column;
+}
+.main-app-body .theme .theme-preview{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(120px,1fr));
+    grid-column-gap: 5px;
+    grid-row-gap: 20px;
+}
+.main-app-body .theme .theme-preview .view-theme{
+    width: 90px;
+    height: 90px;
+    box-shadow: 0px 0px 15px 0px var(--shadow-clr);
+}
+@media (max-width:768px) {
+    .main-app-body .theme .theme-preview{
+        grid-template-columns: repeat(auto-fill,minmax(60px,1fr));
+        
+    }
+    .main-app-body .theme .theme-preview .view-theme{
+        width: 60px;
+        height: 60px;
+    }
+}
+
+.main-app-body .main-player-bar{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--main-clr);
+    width: 100%;
+    height: 60px;
+    padding: 15px;
+    transition: height 0.3s ease-in , background-color 0.3s ease-out;
+    backdrop-filter: blur(15px);
+}
+@media (min-width:769px) {
+    .main-app-body .main-player-bar{
+        box-shadow: 0px -5px 10px var(--shadow-clr);
+    }
+    
+}
+.main-app-body .main-player-bar .song-cover_and-info {
+    
+    position: relative;
+    width: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    color: var(--tx-clr);
+    letter-spacing: 1px;
+}
+@media (max-width:768px) {
+    .main-app-body .main-player-bar .song-cover_and-info {
+        width: 187px;
+    }
+    
+}
+.main-app-body .main-player-bar .song-cover_and-info img{
+    max-width: 20%;
+    object-fit: cover;
+}
+.main-app-body .main-player-bar .song-cover_and-info .song-name-bar{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.main-app-body .main-player-bar .song-cover_and-info .song-name-bar p:first-child{
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 0 5px 5px;
+    
+}
+.main-app-body .main-player-bar .song-cover_and-info .song-name-bar p:last-child{
+    margin: 0;
+    padding: 0 0 5px 5px;
+    font-size: 13px;
+    font-weight: 400;
+}
+.main-app-body .main-player-bar .med-side-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+    padding: 0 25px;
+}
+.main-app-body .main-player-bar .med-side-info span {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--tx-clr);
+    width: 50px;
+}
+.main-app-body .main-player-bar .med-side-info input[type="range"]{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background-color: var(--seek-clr);
+    overflow: hidden;
+    border-radius: 50px;
+}
+.main-app-body .main-player-bar .med-side-info input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width: 1px;
+    box-shadow: -438px 0 0 438px var(--seek-bull);
+}
+
+
+@media (max-width:768px) {
+    .main-app-body .main-player-bar .med-side-info{
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        background-color: var(--main-clr);
+        padding: 5px 8px;
+        box-shadow: 0px -8px 10px 0px var(--shadow-clr);
+    }    
+}
+
+
+.main-app-body .main-player-bar .right-side-info {
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-basis: 150px;
+}
+.main-app-body .main-player-bar .right-side-info .backword.active ,
+.main-app-body .main-player-bar .right-side-info .forward.active {
+    opacity: 0.4;
+}
+.main-app-body .main-player-bar .right-side-info .play_paue_container{
+    position: relative;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-app-body .main-player-bar .right-side-info .play_paue_container .btn{
+    position: absolute;
+    
+}
+.main-app-body .main-player-bar .right-side-info .play_paue_container .btn:last-child{
+    opacity: 0;
+    z-index: -1;
+}
+.main-app-body .main-player-bar .right-side-info .play_paue_container.active .btn:last-child{
+    opacity: 1;
+    z-index: 2;
+}
+.main-app-body .main-player-bar .right-side-info .play_paue_container.active .btn:first-child{
+    opacity: 0;
+    z-index: -1;
+}
+
+.right-side-info .btn{
+    font-size: 25px;
+    color: var(--tx-clr);
+}
+.right-side-info .volume{
+    position: relative;
+}
+.right-side-info .vol_panel{
+    position: absolute;
+    bottom:  195%;
+    right: -20px;
+    padding: 12px;
+    background-color: var(--main-clr);
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(270deg)  translateX(-150%);
+}
+.right-side-info.active .vol_panel{
+    transform: rotate(270deg) translateX(0);
+}
+.right-side-info .vol_panel input[type="range"]{
+    -webkit-appearance: none;
+    height: 10px;
+    background-color: var(--seek-clr);
+    border-radius: 42px;
+    overflow: hidden;
+}
+.right-side-info .vol_panel input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 1px;
+    background-color: var(--seek-bull);
+    box-shadow:  -100px 0 0 100px  var(--seek-bull);
+}
+@media (max-width:768px) {
+    .right-side-info .vol_panel{
+        bottom: 240% !important;
+    }
+}

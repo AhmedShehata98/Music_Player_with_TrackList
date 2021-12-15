@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ionic font icon -->
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <!-- end font awesome -->
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="css/vendor/normalize.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <title>Music Player With TrackList</title>
+</head>
+<body>
+    <main class="container">
+        <aside class="side-menu">
+            <nav>
+                <li>
+                    <ion-icon class="track-ico" name="musical-notes"></ion-icon>
+                    <a href="#">Tracks</a>
+                </li>
+                <li>
+                    <ion-icon class="theme-ico" name="brush"></ion-icon>
+                    <a href="#">Themes</a>
+                </li>
+            </nav>
+            <div class="about-me">
+                <div class="my-photo">
+                    <img src="img/profile-pic.png" alt="">
+                </div>
+                <p>Ahmed Shehata</p>
+                <ul class="about-panel">
+                    <li>
+                        <ion-icon class="fb-logo" name="logo-facebook"></ion-icon>
+                        <a href="https://www.facebook.com/MidoEsquire">facebook</a>
+                    </li>
+                    <li>
+                        <ion-icon class="git-logo" name="git-branch"></ion-icon>
+                        <a href="https://github.com/AhmedShehata98">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <section class="main-app-body">
+            <!-- Player Start -->
+            <audio src="" type='audio/mpeg' class="AudioPlayerEle"></audio>
+            <!-- Player end -->
+
+            <header class="heading-title">
+                <ion-icon name="arrow-round-back"></ion-icon>
+                    <h2>Music player</h2>
+            </header>
+            <section class="tracks">
+                <div class="head-trk-title">
+                    <h4>Tracks List</h4>
+                </div>
+                    <div class="track-container">
+
+
+                    </div>
+            </section>
+            <section class="theme">
+                <div class="head-th-title">
+                    <h4>Themes</h4>
+                </div>
+                <div class="theme-preview">
+                    <span class="view-theme" style="background-color: #D4AC2B ;" data-clr='#D4AC2B'></span>
+                    <span class="view-theme" style="background-color: #7E370C ;" data-clr='#7E370C'></span>
+                    <span class="view-theme" style="background-color: #142F43 ;" data-clr='#142F43'></span>
+                    <span class="view-theme" style="background-color: #1597E5 ;" data-clr='#1597E5'></span>
+                    <span class="view-theme" style="background-color: #105652 ;" data-clr='#105652'></span>
+                    <span class="view-theme" style="background-color: #17D7A0 ;" data-clr='#17D7A0'></span>
+                    <span class="view-theme" style="background-color: #212121 ;" data-clr='#212121'></span>
+                    <span class="view-theme" style="background-color: #FF1700 ;" data-clr='#FF1700'></span>
+                    <span class="view-theme" style="background-color: #4C0070 ;" data-clr='#4C0070'></span>
+                </div>
+            </section>
+            <div class="main-player-bar">
+                <div class="song-cover_and-info">
+                    <!-- <div class="song-cover">
+                    </div> -->
+                    <img class="song-cover" src="img/05.jpg" >
+                    <div class="song-name-bar">
+                        <p>song name</p>
+                        <p>artist name</p>
+                    </div>
+                </div>
+                <div class="med-side-info">
+                    <span class="currentTime">
+                        00.00
+                    </span>
+                        <input type="range" value="20" id="seekbar">
+                    <span class="DurationTime">
+                        00:00
+                    </span>
+                </div>
+                <div class="right-side-info">
+                    <ion-icon class="btn backword" name="skip-backward"></ion-icon>
+                    <div class="play_paue_container">
+                        <ion-icon class="btn play" name="play"></ion-icon> 
+                        <ion-icon class="btn pause" name="pause"></ion-icon> 
+                    </div>
+                    <ion-icon class="btn forward" name="skip-forward"></ion-icon> 
+                    <ion-icon class="btn volume" name="volume-high"></ion-icon>
+                    <span class="vol_panel">
+                        <input type="range" value="25" id="volume-control">
+                    </span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
