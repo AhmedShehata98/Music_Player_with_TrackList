@@ -5,12 +5,13 @@ let audioPlayer = document.querySelector('.AudioPlayerEle');
 
 const tracksItemInList = document.querySelector('.side-menu nav li:first-child a') ,
 TracksContainer        = document.querySelector('.track-container') ,
-trackBoxInfo           = document.querySelector('.track') ,
+trackBoxInfo           = document.querySelector('.tracks') ,
 trackbox_Cover         = document.querySelector('.track .cover img'),
 trackbox_Name          = document.querySelector('.track .song-name p'),
 trackbox_Artist        = document.querySelector('.track .artist p'),
 trackbox_TimeDuration  = document.querySelector('.track .time span'),
-themesItemInList       = document.querySelector('.side-menu nav li:nth-child(2) a') ,
+themesItemInList       = document.querySelector('.side-menu nav li:last-child a') ,
+colorsBoxsInfo         = document.querySelector('.theme') ,
 colorsBoxs             = document.querySelector('.theme-preview') ,
 mainPlayerBox_Cover    = document.querySelector('.song-cover') ,
 mainPlayerBox_Name     = document.querySelector('.song-name-bar p:first-child') ,
@@ -24,7 +25,8 @@ controlBTNs_pause           = document.querySelector('.pause') ,
 controlBTNs_Forward         = document.querySelector('.forward') ,
 controlBTNs_VolumeBtn       = document.querySelector('.volume') ,
 controlBTNs_VolPanel        = document.querySelector('.vol_panel') ,
-controlBTNs_VolSeekBar      = document.querySelector('#volume-control') ;
+controlBTNs_VolSeekBar      = document.querySelector('#volume-control') ,
+controlBTNs_VolMute         = document.querySelector('.vol_mute');
 
 window.onload=SETUP_MUSIC_INF(indexNumber);
 PLAY();
@@ -32,7 +34,10 @@ PAUSE();
 SEEKBAR_ACTION();
 SONG_BACKWORD_Forward();
 CREATE_TRACKS_ELEMENT();
-
+VOL_BTN_ACTIONS();
+ASIDE_LIST_ITEMS();
+SET_THEMES_COLOR();
+REMEMBER_ME();
 
 function SETUP_MUSIC_INF(index){
     mainPlayerBox_SeekBar.value = 0;
@@ -40,13 +45,11 @@ function SETUP_MUSIC_INF(index){
     let songDatasArray = dataSongs[index] ;
 
 
-    // cover.src = songDatasArray.cover ;
+
     mainPlayerBox_Cover.src = songDatasArray.cover ;
-    // pragraph_name.innerHTML = songDatasArray.name    ;
+    audioPlayer.src = songDatasArray.path;
     mainPlayerBox_Name.innerHTML = songDatasArray.name  ;
-    // pragraph_art.innerHTML = songDatasArray.artist   ;
     mainPlayerBox_Artist.innerHTML = songDatasArray.artist   ;
-    // audioPlayer.src = songDatasArray.path
     CREATE_TRACKS_ELEMENT();
 
     // Geting song Duration Time With set interval to fix NaN
@@ -78,15 +81,25 @@ function TIME_FORMAT(number){
 
 function PLAY(){
     controlBTNs_play.addEventListener('click',()=>{
-        document.querySelector('.play_paue_container').classList.add('active');
-        audioPlayer.play();
+        // document.querySelector('.play_paue_container').classList.add('active');
+        // audioPlayer.play();
+        SET_PLAY_STATUS();
     })
 }
 function PAUSE(){
     controlBTNs_pause.addEventListener('click',()=>{
+        // document.querySelector('.play_paue_container').classList.remove('active');
+        // audioPlayer.pause();
+        SET_PAUSE_STATUS();
+    })
+}
+function SET_PLAY_STATUS(){
+    document.querySelector('.play_paue_container').classList.add('active');
+    audioPlayer.play();
+}
+function SET_PAUSE_STATUS(){
         document.querySelector('.play_paue_container').classList.remove('active');
         audioPlayer.pause();
-    })
 }
 
 function SEEKBAR_ACTION(){
@@ -155,6 +168,11 @@ function CREATE_TRACKS_ELEMENT(){
                 name.setAttribute('data-cover',`${dataSongs[i].cover}`);
                 name.setAttribute('data-Name',`${dataSongs[i].name}`);
                 name.setAttribute('data-artist',`${dataSongs[i].artist}`);
+                pragraph_name.setAttribute('data-MusicSrc',`${dataSongs[i].path}`);
+                pragraph_name.setAttribute('data-MusicSrc',`${dataSongs[i].path}`)
+                pragraph_name.setAttribute('data-cover',`${dataSongs[i].cover}`);
+                pragraph_name.setAttribute('data-Name',`${dataSongs[i].name}`);
+                pragraph_name.setAttribute('data-artist',`${dataSongs[i].artist}`);
             artist.className= 'artist';
     
             track.appendChild(cover);
@@ -175,12 +193,79 @@ function CREATE_TRACKS_ELEMENT(){
 }
 function GET_SETUP_INFO(track ){
     track.addEventListener('click',(e)=>{
-        SETTER();
+        SET_PLAY_STATUS();
+        audioPlayer.src = e.target.getAttribute('data-MusicSrc');
+        mainPlayerBox_Cover.src = e.target.getAttribute('data-cover');
+        mainPlayerBox_Name.innerHTML = e.target.getAttribute('data-Name');
+        mainPlayerBox_Artist.innerHTML = e.target.getAttribute('data-artist');    
+        audioPlayer.play();
     })
 }
-function SETTER(){
-    audioPlayer.src = e.target.getAttribute('data-MusicSrc');
-    mainPlayerBox_Cover.src = e.target.getAttribute('data-cover');
-    mainPlayerBox_Name.innerHTML = e.target.getAttribute('data-Name');
-    mainPlayerBox_Artist.innerHTML = e.target.getAttribute('data-artist');
+
+function VOL_BTN_ACTIONS(){
+    controlBTNs_VolumeBtn.addEventListener('click',()=>{
+        document.querySelector('.right-side-info').classList.toggle('active')
+    })
+    
+    controlBTNs_VolMute.addEventListener('click',()=>{
+        
+        if(audioPlayer.volume == 1 )
+        {
+            audioPlayer.volume = 0;
+            controlBTNs_VolMute.classList.add('active');
+        }else{
+            controlBTNs_VolMute.classList.remove('active');
+            audioPlayer.volume = 1;
+        }
+    })
+    
+    controlBTNs_VolSeekBar.addEventListener('change',()=>{
+        audioPlayer.volume = GET_FLOAT(controlBTNs_VolSeekBar.value);
+        controlBTNs_VolMute.classList.remove('active');
+    })
+}
+function GET_FLOAT(num){
+    let float = `0.${num}`
+    if(num <= 0)
+    {
+        float = num
+    }
+    if(num >= 99){
+        float = '1'
+    }
+    return Number(float)
+}
+
+function ASIDE_LIST_ITEMS(){
+    themesItemInList.addEventListener('click',()=>{
+        trackBoxInfo.classList.add('active');
+        colorsBoxsInfo.classList.add('active')
+    })
+    tracksItemInList.addEventListener('click',()=>{
+        trackBoxInfo.classList.remove('active');
+        colorsBoxsInfo.classList.remove('active')
+    })
+}
+
+function SET_THEMES_COLOR(){
+    Array.from(colorsBoxs.children).forEach(color => {
+        color.addEventListener('click',(e)=>{
+            SAVE_IN_STORAGE(e.target.dataset.clr)
+            document.documentElement.style.setProperty('--main-clr',GET_FROM_STORAGE('backgrondColor'))
+        })
+    });
+}
+
+function SAVE_IN_STORAGE(input){
+    window.localStorage.setItem('backgrondColor',input);
+    
+}
+
+function GET_FROM_STORAGE(color){
+   return window.localStorage.getItem(color);
+}
+
+
+function REMEMBER_ME(){
+    return document.documentElement.style.setProperty('--main-clr',GET_FROM_STORAGE('backgrondColor'));
 }
