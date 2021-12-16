@@ -122,11 +122,11 @@
 
 @media (max-width:768px) {
     .side-menu .about-me{
-        top: -35px;
+        top: -50px;
         flex-direction: column;    
     }
     .side-menu .about-me p{
-    font-size: 14px;
+        font-size: 14px;
     }
 }
 .side-menu .about-me .my-photo{
@@ -188,6 +188,24 @@
     height: 75vh;
     overflow-y: scroll;
     top: 17%;
+}
+.main-app-body .tracks::-webkit-scrollbar{
+    -webkit-appearance: none;
+    width: 10px;
+    background-color: var(--seek-clr);
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 15px;
+}
+.main-app-body .tracks::-webkit-scrollbar-thumb{
+    -webkit-appearance: none;
+    background-color: var(--main-clr);
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 35px;
+}
+@media (max-width:768px) {
+    .main-app-body .tracks{
+        height: 65vh;
+    }        
 }
 .main-app-body .tracks.active{
     display: none;

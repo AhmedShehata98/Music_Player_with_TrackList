@@ -38,6 +38,7 @@ VOL_BTN_ACTIONS();
 ASIDE_LIST_ITEMS();
 SET_THEMES_COLOR();
 REMEMBER_ME();
+PLAYNOW_IDENTIFY();
 
 function SETUP_MUSIC_INF(index){
     mainPlayerBox_SeekBar.value = 0;
@@ -269,3 +270,18 @@ function GET_FROM_STORAGE(color){
 function REMEMBER_ME(){
     return document.documentElement.style.setProperty('--main-clr',GET_FROM_STORAGE('backgrondColor'));
 }
+function PLAYNOW_IDENTIFY(){
+    for(let i = 0 ; i < TracksContainer.children.length;i++)
+    {
+        setInterval(()=>{
+            if(TracksContainer.children[i].dataset.cover == mainPlayerBox_Cover.getAttribute('src')){
+
+                TracksContainer.children[i].classList.add('active')
+            }else{
+                TracksContainer.children[i].classList.remove('active')
+                
+            }
+        },300)
+    }
+}
+// console.log(track.children[0]); 
